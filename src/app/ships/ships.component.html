@@ -9,8 +9,7 @@
     <ul class="navbar-nav mr-auto">
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" [(ngModel)]="query" name="queryInput">
-      <button class="btn btn-secondary my-2 my-sm-0" (click)="searchClicked()">Search</button>
+      <input class="form-control mr-sm-2" type="text" [(ngModel)]="query" name="queryInput" (input)="searchClicked()" placeholder="Search">
     </form>
   </div>
 </nav>
@@ -61,15 +60,68 @@
 
     <div class="col-lg-9 offset-3">
       <div *ngFor="let ship of displayShips; let i = index">
-        <div class="card mb-3">
+        <div class="card mb-3" (click)="viewShip(ship)">
           <div class="card-header">{{ship.name}}</div>
           <div class="card-body">
             <h4 class="card-title">{{ship.cost_in_credits}} credits</h4>
             <h5 class="card-title">Pilots: {{ship.pilotCount}}</h5>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#shipModal">
+                See More
+            </button>
           </div>
         </div>
       </div>
     </div>
 
   </div>
+
+  <div class="modal fade" id="shipModal">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">{{selectedShip.name}}</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#specs">Specs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#people">Pilots</a>
+              </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div id="specs" class="container tab-pane active"><br>
+                <ul>
+                  <li>Manufacturer: {{selectedShip.manufacturer}}</li>
+                  <li>Crew: {{selectedShip.crew}}</li>
+                  <li>Model: {{selectedShip.model}}</li>
+                  <li>Length: {{selectedShip.length}}</li>
+                </ul>
+              </div>
+              <div id="people" class="container tab-pane fade"><br>
+                <h3>People</h3>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                  consequat.</p>
+              </div>
+              
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
 </div>

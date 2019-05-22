@@ -28,6 +28,17 @@ export class SwapiService {
     }
   }
 
+  getPilot(reqUrl){
+    try{
+      return this.http.get(reqUrl).pipe(
+        map(res => res.json())
+      )
+    }
+    catch(err){
+      console.log("Error getting pilot from api");
+    }
+  }
+
   compareShipsLowToHigh(a: Ship, b: Ship){
      var priceA = a.cost_in_credits;
     var priceB = b.cost_in_credits;

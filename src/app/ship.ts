@@ -7,6 +7,7 @@ export class Ship{
     manufacturer: string;
     model: string;
     pilotCount: number;
+    pilots: any[]
 
     // constructor(name: string, cargo_capacity: number, cost_in_credits: number, crew: number, length: number, manufacturer: string, model: string){
     //     this.name = name;
@@ -33,6 +34,7 @@ export class Ship{
         this.manufacturer = jsonShip.manufacturer;
         this.model = jsonShip.model;
         this.pilotCount = jsonShip.pilots.length;
+        this.pilots = jsonShip.pilots;
     }
 
 }

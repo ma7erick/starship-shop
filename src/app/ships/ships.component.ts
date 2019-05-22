@@ -16,6 +16,8 @@ export class ShipsComponent implements OnInit {
   priceLowerBound: number;
   priceUpperBound: number;
   isLowToHigh: boolean;
+  query: string;
+  selectedShip: Ship;
 
 
   onPriceFilterChange(){
@@ -40,6 +42,17 @@ export class ShipsComponent implements OnInit {
     this.displayShips = this.swapiService.displayShips;
   }
 
+  searchClicked(){
+    this.swapiService.filterShipsBySearchQuery(this.query);
+    this.displayShips = this.swapiService.displayShips;
+  }
+
+  viewShip(ship: Ship){
+    this.selectedShip = ship;
+    console.log(this.selectedShip.pilots);
+    this.swapiService.getPilot
+
+  }
   
 
   ngOnInit() {
