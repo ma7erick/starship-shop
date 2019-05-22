@@ -31,12 +31,7 @@ export class SwapiService {
   compareShipsLowToHigh(a: Ship, b: Ship){
      var priceA = a.cost_in_credits;
     var priceB = b.cost_in_credits;
-    if(priceA == undefined){
-      priceA = 0;
-    }
-    if(priceB == undefined){
-      priceB = 0;
-    }
+    
     console.log("A: " + priceA + "   B: " + priceB);
     if(priceA < priceB){
       return -1;
@@ -61,11 +56,12 @@ export class SwapiService {
   sortShipsByPrice(isLowToHigh: boolean){
     console.log("low to high: "+ isLowToHigh);
 
-    if(isLowToHigh == true){
-      console.log("low to high: "+ isLowToHigh);
+    if(isLowToHigh){
+      console.log("low");
       this.displayShips.sort(this.compareShipsLowToHigh);
     }
     else{
+      console.log("high");
       this.displayShips.sort(this.compareShipsHighToLow);
     }
   }
@@ -77,6 +73,17 @@ export class SwapiService {
     for(var i = 0; i < this.ships.length; i++){
       var ship = this.ships[i];
       if(ship.cost_in_credits >= lowerBound && ship.cost_in_credits <= upperBound){
+        console.log("found a ship")
+        this.displayShips.push(ship);
+      }
+    }
+  }
+
+  filterShipsBySearchQuery(query: string){
+    this.displayShips = [];
+    for(var i = 0; i < this.ships.length; i++){
+      var ship = this.ships[i];
+      if(ship.name.toUpperCase().includes(query.toUpperCase())){
         console.log("found a ship")
         this.displayShips.push(ship);
       }

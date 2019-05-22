@@ -21,7 +21,13 @@ export class Ship{
     constructor(jsonShip: any){
         this.name = jsonShip.name;
         this.cargo_capacity = jsonShip.cargo_capacity;
-        this.cost_in_credits = jsonShip.cost_in_credits;
+        if(jsonShip.cost_in_credits == 'unknown'){
+            this.cost_in_credits = 0;
+        }else{
+            this.cost_in_credits = parseInt(jsonShip.cost_in_credits);
+        }
+        
+        
         this.crew = jsonShip.crew;
         this.length = jsonShip.length;
         this.manufacturer = jsonShip.manufacturer;
