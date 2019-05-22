@@ -15,6 +15,7 @@ export class ShipsComponent implements OnInit {
   displayShips: Ship[] = [];
 
 
+  
 
   ngOnInit() {
     this.swapiService.getShips()
