@@ -11,7 +11,7 @@ export class SwapiService {
 
   constructor(private http: Http) { }
 
-  url = 'http://swapi.co/api/'
+  url = 'https://swapi.co/api/'
 
   getShips(){
     try{

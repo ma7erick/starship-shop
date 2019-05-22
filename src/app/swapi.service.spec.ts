@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { SwapiService } from './swapi.service';
 
-describe('ApiServiceService', () => {
+describe('SwapiService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [SwapiService]
