@@ -16,7 +16,7 @@ export class ShipsComponent implements OnInit {
   displayShips: Ship[] = [];
   priceLowerBound: number;
   priceUpperBound: number;
-  isLowToHigh: boolean;
+  isLowToHigh: number = 1;
   query: string;
   selectedShip: Ship;
   selectedPilots: Pilot[];
@@ -31,10 +31,10 @@ export class ShipsComponent implements OnInit {
       lowerBound = 0;
     }
     this.swapiService.filterShipsByPrice(lowerBound, upperBound);
+    this.swapiService.sortShipsByPrice(this.isLowToHigh);
+    
     this.displayShips = this.swapiService.displayShips;
-    if(this.priceLowerBound == 0){
-
-    }
+    
 
   }
 
@@ -43,8 +43,9 @@ export class ShipsComponent implements OnInit {
     this.displayShips = this.swapiService.displayShips;
   }
 
-  searchClicked(){
+  searchInput(){
     this.swapiService.filterShipsBySearchQuery(this.query);
+    this.swapiService.sortShipsByPrice(this.isLowToHigh);
     this.displayShips = this.swapiService.displayShips;
   }
 
@@ -79,6 +80,8 @@ export class ShipsComponent implements OnInit {
       this.displayShips = this.ships;
       this.swapiService.ships = this.ships;
       this.swapiService.displayShips = this.ships;
+      this.swapiService.sortShipsByPrice(this.isLowToHigh);
+      this.displayShips = this.swapiService.displayShips;
       this.selectedShip = this.ships[0];
       console.log(this.displayShips);
     })

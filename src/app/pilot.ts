@@ -12,7 +12,7 @@ export class Pilot{
         this.birth_year = jsonPilot.birth_year;
         this.mass = jsonPilot.mass;
         this.height = jsonPilot.height;
-        this.gender = jsonPilot.gener;
+        this.gender = jsonPilot.gender;
     }
 
 }

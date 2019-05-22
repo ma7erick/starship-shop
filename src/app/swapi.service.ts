@@ -65,10 +65,10 @@ export class SwapiService {
     }
   }
 
-  sortShipsByPrice(isLowToHigh: boolean){
+  sortShipsByPrice(isLowToHigh: number){
     console.log("low to high: "+ isLowToHigh);
 
-    if(isLowToHigh){
+    if(isLowToHigh == 1){
       console.log("low");
       this.displayShips.sort(this.compareShipsLowToHigh);
     }

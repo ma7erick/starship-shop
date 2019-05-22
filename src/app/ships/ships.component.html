@@ -9,7 +9,7 @@
     <ul class="navbar-nav mr-auto">
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" [(ngModel)]="query" name="queryInput" (input)="searchClicked()" placeholder="Search">
+      <input class="form-control mr-sm-2" type="text" [(ngModel)]="query" name="queryInput" (input)="searchInput()" placeholder="Search">
     </form>
   </div>
 </nav>
@@ -48,8 +48,8 @@
           <label>Sort Price</label>
           <div class="form-group">
             <select class="custom-select" (change)="sortChanged()" [(ngModel)]="isLowToHigh" name="sortSelecter">
-              <option [value]="true">Low to High</option>
-              <option [value]="false">High to Low</option>
+              <option [value]="1">Low to High</option>
+              <option [value]="0">High to Low</option>
             </select>
           </div>
         </div>
@@ -107,8 +107,27 @@
                 </ul>
               </div>
               <div id="people" class="container tab-pane fade"><br>
-               <!-- <table class="table table-hover">
-               </table> -->
+               <table class="table table-hover">
+                 <thead>
+                    <tr>
+                        <th> <p>Name</p></th>
+                        <th> <p>Birth Year</p></th>
+                        <th> <p>Mass</p></th>
+                        <th>  <p>Height</p></th>
+                        <th>  <p>Gender</p></th>
+                      </tr>
+                 </thead>
+                 <tbody>
+                    <tr *ngFor="let pilot of selectedPilots; let i = index;">
+                      <td>{{pilot.name}}</td>
+                      <td>{{pilot.birth_year}}</td>
+                      <td>{{pilot.mass}}</td>
+                      <td>{{pilot.height}}</td>
+                      <td>{{pilot.gender}}</td>
+                  </tbody>
+                
+                
+               </table>
                 
               </div>
               
