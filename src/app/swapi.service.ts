@@ -62,6 +62,8 @@ export class SwapiService {
   }
 
   filterShipsByPrice(lowerBound: number, upperBound: number){
+    console.log("lowerBound: " + lowerBound);
+    console.log("upperBound: " + upperBound);
     this.displayShips = [];
     for(var i = 0; i < this.ships.length; i++){
       var ship = this.ships[i];

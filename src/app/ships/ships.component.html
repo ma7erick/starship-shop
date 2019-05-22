@@ -32,7 +32,10 @@
           <div class="row">
             <div class="col">
               <label> Filter Prices</label>
-              <input class="form-control mr-sm-2" type="text" [(ngModel)]="lowerBound" name="queryInput">
+              <input class="form-control mr-sm-2" type="text" [(ngModel)]="priceLowerBound" name="lowerBoundInput" placeholder="low" (input)="onPriceFilterChange($event)">
+              <span> to </span>
+              <input class="form-control mr-sm-2" type="text" [(ngModel)]="priceHigherBound" name="lowerBoundInput" placeholder="high" (input)="onPriceFilterChange($event)">
+
             <hr>
     
             </div>

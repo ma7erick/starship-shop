@@ -17,9 +17,21 @@ export class ShipsComponent implements OnInit {
   priceUpperBound: number;
 
 
-  onPriceFilterChange(){
-    this.swapiService.filterShipsByPrice(this.priceLowerBound, this.priceUpperBound);
+  onPriceFilterChange(event){
+    console.log("made it here");
+    var lowerBound = this.priceLowerBound;
+    var upperBound = this.priceUpperBound;
+    if(upperBound == 0){
+      upperBound = 1000000000001;
+    }
+    this.swapiService.filterShipsByPrice(lowerBound, upperBound);
     this.displayShips = this.swapiService.displayShips;
+    if(this.priceLowerBound == 0){
+      console.log("lower bound: " + this.priceLowerBound);
+
+    }
+    // console.log("upper bound: " + this.priceUpperBound);
+
   }
 
 
