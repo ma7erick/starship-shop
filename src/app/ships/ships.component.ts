@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SwapiService } from '../swapi.service';
 import { Ship } from '../ship';
+import { Pilot } from '../pilot';
 
 @Component({
   selector: 'app-ships',
@@ -18,7 +19,7 @@ export class ShipsComponent implements OnInit {
   isLowToHigh: boolean;
   query: string;
   selectedShip: Ship;
-
+  selectedPilots: Pilot[];
 
   onPriceFilterChange(){
     var lowerBound = this.priceLowerBound;
@@ -50,7 +51,18 @@ export class ShipsComponent implements OnInit {
   viewShip(ship: Ship){
     this.selectedShip = ship;
     console.log(this.selectedShip.pilots);
-    this.swapiService.getPilot
+    this.selectedPilots = [];
+    for(var i = 0; i < this.selectedShip.pilots.length; i++){
+      console.log(this.selectedShip.pilots[i]);
+      this.swapiService.getPilot(this.selectedShip.pilots[i])
+      .subscribe((res) =>{
+        console.log(res);
+        var pilot = new Pilot(res);
+        this.selectedPilots.push(pilot);
+      })
+
+    }
+    
 
   }
   
@@ -67,7 +79,7 @@ export class ShipsComponent implements OnInit {
       this.displayShips = this.ships;
       this.swapiService.ships = this.ships;
       this.swapiService.displayShips = this.ships;
-
+      this.selectedShip = this.ships[0];
       console.log(this.displayShips);
     })
 

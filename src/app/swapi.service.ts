@@ -29,6 +29,7 @@ export class SwapiService {
   }
 
   getPilot(reqUrl){
+    console.log("trying to get pilot");
     try{
       return this.http.get(reqUrl).pipe(
         map(res => res.json())
