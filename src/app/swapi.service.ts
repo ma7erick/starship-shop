@@ -67,7 +67,8 @@ export class SwapiService {
     this.displayShips = [];
     for(var i = 0; i < this.ships.length; i++){
       var ship = this.ships[i];
-      if(ship.cost_in_credits > lowerBound && ship.cost_in_credits < upperBound){
+      if(ship.cost_in_credits >= lowerBound && ship.cost_in_credits <= upperBound){
+        console.log("found a ship")
         this.displayShips.push(ship);
       }
     }
