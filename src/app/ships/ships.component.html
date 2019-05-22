@@ -18,46 +18,58 @@
 <div class="container-fluid">
   <div class="row">
 
-      <div class="col-lg-3 position-fixed bg-light" style="height:100%">
-          <br>
-          <br>
-          <div class="row">
-            <div class="col">
-                <h4>Refine your search</h4>
-                <hr>
-            </div>
-            
+    <div class="col-lg-3 position-fixed bg-light" style="height:100%">
+      <br>
+      <br>
+      <div class="row">
+        <div class="col">
+          <h4>Refine your search</h4>
+          <hr>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+
+            <label> Filter Prices</label>
+            <input class="form-control" type="number" [(ngModel)]="priceLowerBound" name="lowerBoundInput" placeholder="low"
+              (input)="onPriceFilterChange()">
+            <input class="form-control" type="number" [(ngModel)]="priceUpperBound" name="upperBoundInput" placeholder="high"
+              (input)="onPriceFilterChange()">
           </div>
-    
-          <div class="row">
-            <div class="col">
-              <div class="row">
-                  <label> Filter Prices</label>
-              </div>
-              <div class="row">
-                  <input class="input" type="number" [(ngModel)]="priceLowerBound" name="lowerBoundInput" placeholder="low" (input)="onPriceFilterChange()">
-              </div>
-              <div class="row">
-                  <input class="input" type="number" [(ngModel)]="priceUpperBound" name="upperBoundInput" placeholder="high" (input)="onPriceFilterChange()">
-              </div>
-            <hr>
-    
-            </div>
+          <hr>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label>Sort Price</label>
+          <div class="form-group">
+            <select class="custom-select" (change)="sortChanged()" [(ngModel)]="isLowToHigh" name="sortSelecter">
+              <option [value]="true">Low to High</option>
+              <option [value]="false">High to Low</option>
+            </select>
           </div>
         </div>
 
+      </div>
+    </div>
+
 
     <div class="col-lg-9 offset-3">
-        <div *ngFor="let ship of displayShips; let i = index">
-            <div class="card mb-3">
-              <div class="card-header">{{ship.name}}</div>
-              <div class="card-body">
-                <h4 class="card-title">{{ship.cost_in_credits}} credits</h4>
-                <h5 class="card-title">Pilots: {{ship.pilotCount}}</h5>
-              </div>
-            </div>
+      <div *ngFor="let ship of displayShips; let i = index">
+        <div class="card mb-3">
+          <div class="card-header">{{ship.name}}</div>
+          <div class="card-body">
+            <h4 class="card-title">{{ship.cost_in_credits}} credits</h4>
+            <h5 class="card-title">Pilots: {{ship.pilotCount}}</h5>
           </div>
+        </div>
+      </div>
     </div>
-   
+
   </div>
 </div>

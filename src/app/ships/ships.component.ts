@@ -15,14 +15,10 @@ export class ShipsComponent implements OnInit {
   displayShips: Ship[] = [];
   priceLowerBound: number;
   priceUpperBound: number;
+  isLowToHigh: boolean;
 
 
   onPriceFilterChange(){
-    console.log("lower bound: " + this.priceLowerBound);
-    console.log("Upper bound: " + this.priceUpperBound);
-
-
-    console.log("made it here");
     var lowerBound = this.priceLowerBound;
     var upperBound = this.priceUpperBound;
     if(upperBound == 0 || upperBound == undefined){
@@ -32,15 +28,17 @@ export class ShipsComponent implements OnInit {
       lowerBound = 0;
     }
     this.swapiService.filterShipsByPrice(lowerBound, upperBound);
-    console.log(this.swapiService.displayShips);
     this.displayShips = this.swapiService.displayShips;
     if(this.priceLowerBound == 0){
 
     }
-    // console.log("upper bound: " + this.priceUpperBound);
 
   }
 
+  sortChanged(){
+    this.swapiService.sortShipsByPrice(this.isLowToHigh);
+    this.displayShips = this.swapiService.displayShips;
+  }
 
   
 
@@ -55,6 +53,8 @@ export class ShipsComponent implements OnInit {
       }
       this.displayShips = this.ships;
       this.swapiService.ships = this.ships;
+      this.swapiService.displayShips = this.ships;
+
       console.log(this.displayShips);
     })
 

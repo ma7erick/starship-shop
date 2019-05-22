@@ -29,9 +29,15 @@ export class SwapiService {
   }
 
   compareShipsLowToHigh(a: Ship, b: Ship){
-    const priceA = a.cost_in_credits;
-    const priceB = b.cost_in_credits;
-
+     var priceA = a.cost_in_credits;
+    var priceB = b.cost_in_credits;
+    if(priceA == undefined){
+      priceA = 0;
+    }
+    if(priceB == undefined){
+      priceB = 0;
+    }
+    console.log("A: " + priceA + "   B: " + priceB);
     if(priceA < priceB){
       return -1;
     }
@@ -53,7 +59,10 @@ export class SwapiService {
   }
 
   sortShipsByPrice(isLowToHigh: boolean){
-    if(isLowToHigh){
+    console.log("low to high: "+ isLowToHigh);
+
+    if(isLowToHigh == true){
+      console.log("low to high: "+ isLowToHigh);
       this.displayShips.sort(this.compareShipsLowToHigh);
     }
     else{
