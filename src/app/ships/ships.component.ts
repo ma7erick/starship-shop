@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SwapiService } from '../swapi.service';
 
 @Component({
   selector: 'app-ships',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShipsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private swapiService: SwapiService) { }
 
   ngOnInit() {
+    this.swapiService.getShips()
+    .subscribe((res) =>{
+      var jsonShips = res;
+    })
+
   }
 
 }
