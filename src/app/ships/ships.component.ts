@@ -13,6 +13,14 @@ export class ShipsComponent implements OnInit {
 
   ships: Ship[] = [];
   displayShips: Ship[] = [];
+  priceLowerBound: number;
+  priceUpperBound: number;
+
+
+  onPriceFilterChange(){
+    this.swapiService.filterShipsByPrice(this.priceLowerBound, this.priceUpperBound);
+    this.displayShips = this.swapiService.displayShips;
+  }
 
 
   
